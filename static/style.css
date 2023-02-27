@@ -36,6 +36,7 @@ img {
   background: #2B2D31;
   grid-column: 1;
   grid-row: 1;
+  overflow-x: hidden;
 }
 
 .channel-content {
@@ -132,7 +133,6 @@ img {
   padding: 2%;
   display: flex;
   align-items: center;
-  box-sizing: border-box;
   background: transparent;
   border-radius: 0.2vh;
   border-width: 0;
@@ -272,3 +272,12 @@ img {
   color: #E0E1E5;
   font-family: "Circular Std";
 }
+
+.load-more-messages {
+  font-size: 1.5vh;
+  padding: 0.5%;
+  background: #46484e;
+  transition: background 0.3s ease-in;
+}
+
+.load-more-messages:hover {background: #575a60;}
