@@ -58,7 +58,10 @@ def guilds():
 @app.route('/api/channels/<id>/messages')
 def messages(id):
   global client
-  data = client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50').json()
+  if request.args.get('cursor') is None:
+    data = client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50').json()
+  else:
+    data = client.get(f'https://discord.com/api/v9/channels/{id}/messages?before={request.args.get("cursor")}&limit=50').json()
   data.reverse()
   return data
 
