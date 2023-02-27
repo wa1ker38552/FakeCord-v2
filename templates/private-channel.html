@@ -19,7 +19,9 @@
         <div class="channel-content-icon"><img style="border-radius: 50%;" src="{{channel_icon}}"></div>
         {{channel_name}}
       </div>
-      <div class="channel-messages-container" id="messagesContainer"></div>
+      <div class="channel-messages-container" id="messagesContainer">
+        <button class="button load-more-messages" onclick="loadMessages()" id="loadMoreButton">Load more</button>
+      </div>
       <div class="channel-message-form">
         <form id="submitMessage">
           <input class="message-input" id="messageInput" type="text" autocomplete="off" spellcheck="false">
