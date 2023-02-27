@@ -28,7 +28,13 @@ function createMessage(id, authorId, authorAvatar, username, timestamp, content)
   message.className = "message"
   messageAuthorAvatar.className = "message-author-avatar"
   messageAuthorImage.style = "border-radius: 50%;"
-  messageAuthorImage.src = `https://cdn.discordapp.com/avatars/${authorId}/${authorAvatar}.png?size=512`
+
+  if (authorAvatar == null) {
+    messageAuthorImage.src = "/static/assets/error.png"
+  } else {
+    messageAuthorImage.src = `https://cdn.discordapp.com/avatars/${authorId}/${authorAvatar}.png?size=512`
+  }
+  
   messageContentContainer.className = "message-content-container"
   messageAuthor.className = "message-author"
   messageAuthor.innerHTML = username
@@ -59,12 +65,43 @@ function sendMessage() {
     })
 }
 
+async function loadMessages() {
+  var parent = document.getElementById("messagesContainer")
+  const children = document.getElementsByClassName("message")
+  var lastMessageId = children[0].id
+  var loadMoreButton = document.getElementById("loadMoreButton")
+  var newButton = loadMoreButton.cloneNode(true);
+  loadMoreButton.remove()
+
+  const promise = await fetch(`/api/channels/${window.location.href.split('/')[4]}/messages?cursor=${lastMessageId}`)
+  const data = await promise.json()
+
+  for (var i=0; i<data.length; i++) {
+    parent.prepend(createMessage(data[i].id, 
+                                data[i].author.id, 
+                                data[i].author.avatar, 
+                                data[i].author.username, 
+                                data[i].timestamp.split('T')[1].split('.')[0], 
+                                data[i].content))
+  }
+
+  document.getElementById(lastMessageId).scrollIntoView()
+  parent.prepend(newButton)
+}
+
 window.onload = async function() {
   var channelId = window.location.href.split('/')[4]
   getClientData()
   getGuildData()
   getChannelData(0, channelId)
   getChannelHistory(channelId)
+
+  await new Promise(r => setTimeout(r, 1000));
+  document.getElementById(channelId).scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center'
+  })
 
   $(document).on('submit','#submitMessage', function(e) {
     e.preventDefault()
