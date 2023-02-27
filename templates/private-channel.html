@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Discord | {{channel_name}}</title>
+    <link rel="icon" href="/static/assets/fakecord.png">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/circular-std">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/channel.js"></script>
+    <script src="/static/eventListener.js"></script>
+  </head>
+  <body>
+    <div class="channel-navigation" id="channelContainer">
+      <button class="button" id="refreshButton" onclick="getChannelData(1); location.reload()">Refresh Channels</button>
+    </div>
+    <div class="channel-content">
+      <div class="channel-content-name">
+        <div class="channel-content-icon"><img style="border-radius: 50%;" src="{{channel_icon}}"></div>
+        {{channel_name}}
+      </div>
+      <div class="channel-messages-container" id="messagesContainer"></div>
+      <div class="channel-message-form">
+        <form id="submitMessage">
+          <input class="message-input" id="messageInput" type="text" autocomplete="off" spellcheck="false">
+        </form>
+      </div>
+    </div>
+    <div class="quick-access-container">
+      <a class="home-icon" onclick="window.location.href='/'"><img class="round-border" src="/static/assets/fakecord.png"></a>
+      <span class="avatar-container"><img style="border-radius: 50%;" id="selfAvatar"></span>
+      <div class="client-username-container">
+        <div class="client-username"></div>
+        <div class="client-discriminator"></div>
+      </div>
+      <a class="settings-icon" onclick="window.location.href='/settings'"><img class="round-border" src="/static/assets/settings icon.png"></a>
+    </div>
+    <div class="guild-container" id="guildContainer"></div>
+  </body>
+</html>
