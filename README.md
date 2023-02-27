@@ -16,6 +16,7 @@ Uses Flask as a framework and Python as the backend. Javascript is used to rende
 4. Run the program, should be on https://0.0.0.0:8080
 
 **Whats New ⭐**
+- Visual improvments
 - Support for message events, no more reloading to show new messages!
 - More versatile backend to handle exceptions and events
 - Content rendered by JS
