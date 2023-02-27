@@ -1,6 +1,8 @@
 # FakeCord-v2
 *A newer development of https://github.com/wa1ker38552/fakecord*
 
+Uses Flask as a framework and Python as the backend. Javascript is used to render content.
+
 **Notes 📝**
 - This project is still in development so not all features from [FakeCord](https://github.com/wa1ker38552/fakecord) are ported / things might not work
 - You **have** to clone your own instance for it to work because of rate limits
