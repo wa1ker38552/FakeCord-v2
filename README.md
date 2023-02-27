@@ -16,5 +16,5 @@
 **Whats New ⭐**
 - Support for message events, no more reloading to show new messages!
 - More versatile backend to handle exceptions and events
-- Content rendered by DOM
+- Content rendered by JS
 - Fully working API
