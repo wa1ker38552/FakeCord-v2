@@ -1,7 +1,7 @@
 # FakeCord-v2
 *A newer development of https://github.com/wa1ker38552/fakecord*
 
-**Developement halted as Autocord is finished so that it can provide support for FakeCord (Unable to use Discord py)**
+**Developement halted as Autocord is finished so that it can provide support for FakeCord (Unable to use Discord py)** <br>
 Uses Flask as a framework and Python as the backend. Javascript is used to render content.
 
 **Notes 📝**
