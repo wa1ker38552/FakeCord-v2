@@ -1,0 +1,7 @@
+{
+  "config": {
+    "proxy": false,
+    "resolution": 16,
+    "attachmentSize": 10
+  }
+}
