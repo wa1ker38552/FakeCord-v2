@@ -1,21 +1,22 @@
 import json
 
 class Database:
-  def __init__(self, path=None):
-    if path is None:
-      self.path = 'data.json'
-    else:
-      self.path = path
+  def __init__(self, route='database.json'):
+    self.route = route
 
   def load(self):
-    with open(self.path, 'r') as file:
-      return json.loads(file.read())
+    return json.loads(open(self.route, 'r').read())
 
-  def set_key(self, key, value):
+  def save(self, data: dict):
+    with open(self.route, 'w') as file:
+      file.write(json.dumps(data, indent=2))
+
+  def set(self, key, value):
     data = self.load()
     data[key] = value
     self.save(data)
-  
-  def save(self, data):
-    with open(self.path, 'w') as file:
-      file.write(json.dumps(data, indent=2))
+
+  def delete(self, key):
+    data = self.load()
+    del data[key]
+    self.save(data)
