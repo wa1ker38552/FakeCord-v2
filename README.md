@@ -10,9 +10,7 @@ Uses Flask as a framework and Python as the backend. Javascript is used to rende
 - Most small features will not be ported through because they take too much time and aren't needed as part of Discord's core functionality
 - ⚠️ This project would be considered a 'selfbot', use at your own risk
 
-**Setup ⚙️**
-Replit deployment recommended
-
+**Setup ⚙️** (Replit deployment recommended)
 1. Clone this repository `git clone https://github.com/wa1ker38552/fakecord-v2`
 2. Create a new environmental variable with the key as `TOKEN` and the value as your discord *Authorization* token, ctrl/cmd+shift+i -> Network -> (click a random channel on discord) -> messages?limit=50 -> Headers -> Request Headers -> Authorization
 3. Create a new environmental variable with the key as `SBTOKEN` and the value as your discord token, ctrl/cmd+shift+i -> Application -> Local Storage -> `https://discord.com` -> token
