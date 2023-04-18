@@ -1,8 +1,7 @@
 # FakeCord-v2
 *A newer development of https://github.com/wa1ker38552/fakecord*
 
-**Developement halted as Autocord is finished so that it can provide support for FakeCord (Unable to use Discord py)** <br>
-Uses Flask as a framework and Python as the backend. Javascript is used to render content.
+FakeCord is a custom web client for Discord which uses Flask as a framework and Python as the backend. Javascript is used to render content.
 
 **Notes 📝**
 - This project is still in development so not all features from [FakeCord](https://github.com/wa1ker38552/fakecord) are ported / things might not work
@@ -17,6 +16,7 @@ Uses Flask as a framework and Python as the backend. Javascript is used to rende
 4. Run the program, should running at https://0.0.0.0:8080
 
 **Whats New ⭐**
+- Config files to load proxy images and change image resolutions
 - Visual improvments
 - Support for message events, no more reloading to show new messages!
 - More versatile backend to handle exceptions and events
