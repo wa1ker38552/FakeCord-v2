@@ -1,0 +1,141 @@
+body {
+  display: grid;
+  grid-template-rows: 15fr 1fr;
+  grid-template-columns: 1fr 9fr;
+  min-height: 0;
+  min-width: 0;
+}
+
+.channel-container, .content-container, .menu-container, .guild-container {
+  width: 100%;
+  height: 100%;
+  padding: 0.2em;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.channel-container {
+  background: var(--channel-background);
+  overflow: auto;
+}
+
+.guild-container {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background: var(--guild-background);
+  padding-left: 0.5em;
+  box-sizing: border-box;
+}
+
+.menu-container {
+  background: var(--menu-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guild-container::-webkit-scrollbar{
+  display: none;
+}
+
+.menu-avatar-container {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  transition: all 0.2s ease-in;
+}
+
+.menu-avatar-container:hover {
+  filter: brightness(0.8);
+}
+
+.menu-text-container {
+  height: auto;
+  color: var(--text-color);
+  display: inline-block;
+  margin-left: 0.8em;
+  width: 60%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: text;
+}
+
+.menu-text-container::-webkit-scrollbar{
+  display: none;
+}
+
+.menu-text-username {
+  font-size: 1em
+}
+
+.menu-text-status {
+  font-size: 0.8em;
+}
+
+.guild {
+  width: 2.5em;
+  height: 2.5em;
+  transition: filter 0.3s ease-in;
+  cursor: pointer;
+  margin-right: 0.8%;
+}
+
+.guild:hover {
+  filter: brightness(0.7);
+}
+
+.channel {
+  text-decoration: none;
+  margin-bottom: 0.2em;
+  cursor: pointer;
+  width: 100%;
+  height: 3em;
+  padding: 0.2em;
+  box-sizing: border-box;
+  border-radius: 0.2em;
+  transition: background 0.2s ease-in;
+}
+
+.channel:hover {
+  background: var(--channel-hover);
+}
+
+.channel-icon {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+}
+
+.channel-text-container {
+  display: inline-block;
+  height: 2em;
+  width: 90%;
+  color: var(--channel-color);
+  margin-left: 0.8em;
+  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.channel-text-container::-webkit-scrollbar{
+  display: none;
+}
+
+.channel-text-username {
+  font-size: 0.9em;
+}
+
+.channel-text-sub {
+  font-size: 0.6em;
+}
+
+.home-button {
+  width: 3em;
+  height: 3em;
+  margin: 0.5em;
+  margin-right: 1em;
+}
