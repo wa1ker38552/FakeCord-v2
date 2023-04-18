@@ -22,3 +22,6 @@ FakeCord is a custom web client for Discord which uses Flask as a framework and 
 - More versatile backend to handle exceptions and events
 - Content rendered by JS instead of Jinja
 - Fully working API
+
+![image](https://user-images.githubusercontent.com/100868154/232855897-4cd42745-f46e-4b8e-8b09-55074cc2bd46.png)
+
