@@ -1,0 +1,20 @@
+:root {
+  --font: "Nunito Sans";
+
+  --link: #66a8ff;
+  --error: #ff6666;
+  --text-color: #DBDEE1;
+  --input: #383A40;
+  --input-color: #6D6F78;
+  
+  --background: #313338;
+  
+  --guild-background: #1E1F22;
+  
+  --menu-background: #232428;
+
+  --channel-background: #2B2D31;
+  --channel-hover: #35373C;
+  --channel-color: #949BA4;
+  --channel-selected: #404249;
+}
