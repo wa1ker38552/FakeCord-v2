@@ -8,10 +8,10 @@ function scroll(div) {
   div.scrollTop = div.scrollHeight;
 }
 
-function parseFormattedText(target, tag) {
+function parseFormattedText(original, target, tag) {
   var str = ""
   var i = 0
-  for (split of message.content.split(target)) {
+  for (split of original.split(target)) {
     if (i%2==0) {
       str += split+`<${tag}>`
     } else {
