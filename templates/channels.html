@@ -44,6 +44,25 @@
                   }
                 })
               })
+
+            document.getElementById("channelInput").addEventListener("keyup", function(event) {
+              if (event.key === "Enter") {
+                var parent = document.getElementById("channelContent")
+                var message = document.getElementById("channelInput").value
+                document.getElementById("channelInput").value = ""
+                
+                fetch('/api/channels/{{channel_id}}/message', {
+                  method: 'POST',
+                  headers: {Accept: 'application.json', 'Content-Type': 'application/json'},
+                  body: JSON.stringify({"content": message})
+                })
+                  .then(response => response.json())
+                  .then(response => {
+                    parent.append(createMessage(data.config, response))
+                    scroll(parent)
+                  })
+              }
+            })
           })
       }
     </script>
