@@ -33,7 +33,7 @@ function createMessage(config, message, new_message=false) {
 
   for (const [key, value] of Object.entries(formattedText)) {
     if (message.content.includes(key)) {
-      message.content = parseFormattedText(key, value)
+      message.content = parseFormattedText(message.content, key, value)
     }
   }
   
@@ -66,6 +66,39 @@ function createMessage(config, message, new_message=false) {
 
       attachmentContainer.append(attachmentImage)
       messageContent.append(attachmentContainer)
+    }
+  }
+
+  if (message.embeds) {
+    for (e of message.embeds) {
+      var em = document.createElement("div")
+      em.className = "embed"
+
+      if ("title" in e) {
+        var embedTitle = document.createElement("div")
+        embedTitle.className = "embed-title"
+        embedTitle.innerHTML = e.title
+        em.append(embedTitle)
+      }
+
+      if ("description" in e) {
+        var embedDescription = document.createElement("div")
+        embedDescription.className = "embed-description"
+
+        for (const [key, value] of Object.entries(formattedText)) {
+          if (e.description.includes(key)) {
+            e.description = parseFormattedText(e.description, key, value)
+          }
+        }
+        console.log(e.description)
+        embedDescription.innerHTML = e.description
+        em.append(embedDescription)
+      }
+
+      try {
+        em.style.borderColor = `#${e.color.toString(16)}`
+      } catch (e) {}
+      messageContent.append(em)
     }
   }
 
@@ -132,8 +165,9 @@ async function getChannelHistory(config, id, cursor=null) {
   }
 
   var b = await a.json()
-  currentAuthor = b[0].author.id
-
+  // currentAuthor = b[0].author.id
+  currentAuthor = null
+    
   for (message of b) {
     if (cursor != null) {
       cont.push(createMessage(config, message))
