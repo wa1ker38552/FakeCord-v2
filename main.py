@@ -78,4 +78,9 @@ def messages(id):
     return client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50&before={request.args.get("cursor")}').json()[::-1]
   return client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50').json()[::-1]
 
+@app.route('/api/channels/<id>/message', methods=['POST'])
+def message_channel(id):
+  content = json.loads(request.data.decode('utf-8'))['content']
+  return client.post(f'https://discord.com/api/v9/channels/{id}/messages', {'content': content}).json()
+
 app.run(host='0.0.0.0', port=8080)
