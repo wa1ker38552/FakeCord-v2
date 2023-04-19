@@ -47,7 +47,6 @@
   grid-template-columns: auto 1fr;
   min-height: 0;
   min-width: 0;
-  margin-bottom: 0.5em;
   grid-gap: 1em;
 }
 
