@@ -31,6 +31,19 @@
                 })
               })
             getChannelHistory(data.config, "{{channel_id}}")
+              .then(x => {
+                var container = document.getElementById("channelContent")
+                scroll(container)
+                container.addEventListener("scroll", function() {
+                  if (container.scrollTop == 0) {
+                    var last = container.children[0]
+                    getChannelHistory(data.config, "{{channel_id}}", last.id)
+                      .then(x => {
+                        last.scrollIntoView()
+                      })
+                  }
+                })
+              })
           })
       }
     </script>
