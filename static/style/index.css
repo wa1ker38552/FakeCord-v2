@@ -30,6 +30,7 @@ body {
 }
 
 .menu-container {
+  padding: 0;
   background: var(--menu-background);
   display: flex;
   align-items: center;
@@ -42,8 +43,8 @@ body {
 
 .menu-avatar-container {
   display: inline-block;
-  width: 2em;
-  height: 2em;
+  width: 3vh;
+  height: 3vh;
   transition: all 0.2s ease-in;
 }
 
@@ -56,7 +57,7 @@ body {
   color: var(--text-color);
   display: inline-block;
   margin-left: 0.8em;
-  width: 60%;
+  width: 50%;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -92,7 +93,7 @@ body {
   margin-bottom: 0.2em;
   cursor: pointer;
   width: 100%;
-  height: 3em;
+  height: auto;
   padding: 0.2em;
   box-sizing: border-box;
   border-radius: 0.2em;
@@ -114,7 +115,7 @@ body {
   height: 2em;
   width: 90%;
   color: var(--channel-color);
-  margin-left: 0.8em;
+  margin-left: 0.5em;
   overflow: hidden;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -134,8 +135,9 @@ body {
 }
 
 .home-button {
-  width: 3em;
-  height: 3em;
+  width: 4vh;
+  height: 4vh;
   margin: 0.5em;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  box-sizing: border-box;
 }
