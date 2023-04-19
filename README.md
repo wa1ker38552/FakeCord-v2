@@ -13,7 +13,7 @@ FakeCord is a custom web client for Discord which uses Flask as a framework and 
 1. Clone this repository `git clone https://github.com/wa1ker38552/fakecord-v2`
 2. Create a new environmental variable with the key as `TOKEN` and the value as your discord *Authorization* token, ctrl/cmd+shift+i -> Network -> (click a random channel on discord) -> messages?limit=50 -> Headers -> Request Headers -> Authorization
 3. Create a new environmental variable with the key as `SBTOKEN` and the value as your discord token, ctrl/cmd+shift+i -> Application -> Local Storage -> `https://discord.com` -> token
-4. Run the program, should running at https://0.0.0.0:8080
+4. Run the program, should be running at https://0.0.0.0:8080
 
 **Whats New ⭐**
 - Config files to load proxy images and change image resolutions
