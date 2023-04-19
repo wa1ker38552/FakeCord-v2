@@ -159,3 +159,26 @@
 .traceback:hover {
   text-decoration: underline;
 }
+
+.embed {
+  width: 20em;
+  height: auto;
+  border-radius: 4px;
+  border-style: none;
+  border-width: 4px;
+  border-left-style: solid;
+  padding: 0.5em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  border-color: #ffffff;
+}
+
+.embed-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.embed-description {
+  font-size: 1em;
+  word-wrap: break-word;
+}
