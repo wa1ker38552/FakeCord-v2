@@ -77,8 +77,8 @@ body {
 }
 
 .guild {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.2em;
+  height: 2.2em;
   transition: filter 0.3s ease-in;
   cursor: pointer;
   margin-right: 0.8%;
