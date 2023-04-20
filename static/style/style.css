@@ -10,11 +10,12 @@ body {
 }
 
 code {
+  display: inline-block;
+  width: auto;
   font-size: 1em;
   background: var(--guild-background);
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  border-radius: 2px;
+  padding: 0.5em;
+  border-radius: 4px;
   border-width: 0;
 }
 
