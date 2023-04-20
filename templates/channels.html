@@ -39,7 +39,9 @@
                     var last = container.children[0]
                     getChannelHistory(data.config, "{{channel_id}}", last.id)
                       .then(x => {
-                        last.scrollIntoView()
+                        if (container.children[0] != last) {
+                          last.scrollIntoView()
+                        }
                       })
                   }
                 })
@@ -58,8 +60,7 @@
                 })
                   .then(response => response.json())
                   .then(response => {
-                    parent.append(createMessage(data.config, response))
-                    scroll(parent)
+                    currentAuthor = response.author.id
                   })
               }
             })
