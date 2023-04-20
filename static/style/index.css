@@ -113,7 +113,7 @@ body {
 .channel-text-container {
   display: inline-block;
   height: 2em;
-  width: 90%;
+  width: 70%;
   color: var(--channel-color);
   margin-left: 0.5em;
   overflow: hidden;
