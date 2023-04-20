@@ -1,86 +1,91 @@
-from database import Database
-from flask import send_file
-from flask import request
-from app import app
-import requests
-import json
-import io
+from flask import render_template
+from threading import Thread
+from api import app
+import discord
 import os
 
-db = Database()
-client = requests.Session()
-client.headers = {'Authorization': os.environ['TOKEN']}
+current_stream = []
+current_channel = 849676926820941866
+client = discord.Client(self_bot=True)
 
-# ===== PROXY ===== #
-@app.route('/api/avatars/<id>/<avatar>')
-def api_avatars(id, avatar):
-  r = requests.get(f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png?size={db.load()["config"]["resolution"]}').content
-  return send_file(io.BytesIO(r), mimetype='image/png')
-
-@app.route('/api/channel-icons/<id>/<icon>')
-def api_channel_icons(id, icon):
-  r = requests.get(f'https://cdn.discordapp.com/channel-icons/{id}/{icon}.png?size={db.load()["config"]["resolution"]}').content
-  return send_file(io.BytesIO(r), mimetype='image/png')
-
-@app.route('/api/icons/<id>/<icon>')
-def api_icons(id, icon):
-  r = requests.get(f'https://cdn.discordapp.com/icons/{id}/{icon}.png?size={db.load()["config"]["resolution"]}').content
-  return send_file(io.BytesIO(r), mimetype='image/png')
-
-@app.route('/api/attachments/<channel>/<id>/<name>')
-def api_attachments(channel, id, name):
-  r = requests.get(f'https://cdn.discordapp.com/attachments/{channel}/{id}/{name}?size={db.load()["config"]["resolution"]}').content
-  return send_file(io.BytesIO(r), mimetype='image/png')
-
-# ===== API ===== #
-@app.route('/api/config')
-def config():
-  return db.load()
-
-@app.route('/api/traceback')
-def traceback():
+def format_embed(e):
+  embed = {}
   try:
-    return json.loads(request.args.get('json'))
-  except json.decoder.JSONDecodeError:
-    return request.args.get('json')
+    embed['author'] = {
+      'name': embed.author.name,
+      'url': embed.author.url
+    }
+  except KeyError: pass
+  try:
+    embed['color'] = embed.color
+  except KeyError: embed.color = None
+  try:
+    embed['thumbnail'] = {
+      'height': embed.thumbnail.height,
+      'url': embed.thumbnail.url,
+      'width': embed.thumbnail.width
+    }
+  except KeyError: pass
+  try:
+    embed['title'] = embed.title
+  except KeyError:
+    embed['title'] = ''
+  try:
+    embed['description'] = embed.description
+  except KeyError:
+    embed['description'] = ''
+  embed['type'] = embed.type
+  try:
+    embed['url'] = embed.url
+  except KeyError: pass
 
-@app.route('/api/guilds')
-def guilds():
-  if not 'guilds' in db.load():
-    db.set('guilds', client.get('https://discord.com/api/v9/users/@me/guilds').json())
-  return db.load()['guilds']
+@app.route('/channels/<id>')
+def app_channels(id):
+  global current_channel
+  try:
+    current_channel = int(id)
+  except ValueError: pass
+  return render_template('channels.html', channel_id=id)
 
-@app.route('/api/channels')
-def channels():
-  if not 'channels' in db.load():
-    channels = client.get('https://discord.com/api/v9/users/@me/channels').json()
+@client.event
+async def on_ready():
+  print(client.user)
 
-    for i, c in enumerate(channels):
-      if c['last_message_id'] is None: channels[i]['last_message_id'] = 0
-  
-    for a in range(len(channels)):
-      for b in range(len(channels)-1):
-        if int(channels[b]['last_message_id']) < int(channels[b+1]['last_message_id']):
-          save = channels[b+1]
-          channels[b+1] = channels[b]
-          channels[b] = save
+@client.event
+async def on_message(messaage):
+  global current_channel
+  if message.channel.id == current_channel:
+    current_stream.append({
+      'attachments': [{
+          'content_type': a.content_type,
+          'filename': a.filename,
+          'height': a.height,
+          'id': a.id,
+          'proxy_url': a.proxy_url,
+          'size': a.size,
+          'url': a.url,
+          'width': a.width
+        } for a in message.attachments],
+      'author': {
+        'avatar': message.author.avatar,
+        'discriminator': message.author.discriminator,
+        'display_name': message.author.display_name,
+        'id': message.author.id,
+        'public_flags': message.author.public_flags,
+        'username': str(message.author).split("#")[0]
+      },
+      'channel_id': message.channel.id,
+      'content': message.content,
+      'embeds': [format_embed(e) for e in message.embeds],
+      'flags': message.flags,
+      'id': message.id,
+      'mention_everyone': message.mention_everyone,
+      'pinned': message.pinned,
+      'timestamp': str(message.created_at),
+      'tts': message.tts,
+      'type': message.type
+    })
 
-    db.set('channels', channels)
-  return db.load()['channels']
-  
-@app.route('/api/@me')
-def self():
-  return client.get('https://discord.com/api/v9/users/@me').json()
 
-@app.route('/api/channels/<id>/messages')
-def messages(id):
-  if request.args.get('cursor'):
-    return client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50&before={request.args.get("cursor")}').json()[::-1]
-  return client.get(f'https://discord.com/api/v9/channels/{id}/messages?limit=50').json()[::-1]
-
-@app.route('/api/channels/<id>/message', methods=['POST'])
-def message_channel(id):
-  content = json.loads(request.data.decode('utf-8'))['content']
-  return client.post(f'https://discord.com/api/v9/channels/{id}/messages', {'content': content}).json()
-
-app.run(host='0.0.0.0', port=8080)
+Thread(target=lambda: app.run(host='0.0.0.0', port=8080)).start()
+client.run(os.environ['TOKEN'], bot=False)
