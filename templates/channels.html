@@ -12,6 +12,7 @@
 
     <script src="/static/scripts/script.js"></script>
     <script src="/static/scripts/metadata.js"></script>
+    <script src="/static/scripts/streamUpdater.js"></script>
     <script src="/static/scripts/channelHistory.js"></script>
   </head>
   <body>
@@ -64,6 +65,8 @@
                   })
               }
             })
+
+            setInterval(function() {updateStream(data.config)}, 1000)
           })
       }
     </script>
