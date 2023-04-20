@@ -47,6 +47,12 @@ def stream():
   current_stream = []
   return reference
 
+@app.route('/')
+def app_index():
+  global current_channel
+  current_channel = None
+  return render_template('index.html')
+
 @app.route('/channels/<id>')
 def app_channels(id):
   global current_channel, current_stream
