@@ -13,7 +13,11 @@ function parseFormattedText(original, target, tag) {
   var i = 0
   for (split of original.split(target)) {
     if (i%2==0) {
-      str += split+`<${tag}>`
+      if (target == "`") {
+        str += split+`<${tag} style="padding: 0.1em; border-radius: 2px">`
+      } else {
+        str += split+`<${tag}>`
+      }
     } else {
       str += split+`</${tag}>`
     }
