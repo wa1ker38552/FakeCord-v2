@@ -15,11 +15,6 @@ app = Flask(__name__)
 client = requests.Session()
 client.headers = {'Authorization': os.environ['TOKEN']}
 
-@app.route('/')
-def app_index():
-  return render_template('index.html')
-
-
 # ===== PROXY ===== #
 @app.route('/api/avatars/<id>/<avatar>')
 def api_avatars(id, avatar):
