@@ -75,9 +75,15 @@ function createMessage(config, message, new_message=false) {
       em.className = "embed"
 
       if ("title" in e) {
-        var embedTitle = document.createElement("div")
+        var embedTitle = document.createElement("a")
         embedTitle.className = "embed-title"
         embedTitle.innerHTML = e.title
+
+        if ("url" in e) {
+          embedTitle.href = e.url
+          embedTitle.target = "_blank"
+          embedTitle.style.color = getComputedStyle(document.body).getPropertyValue('--link')
+        }
         em.append(embedTitle)
       }
 
@@ -90,15 +96,28 @@ function createMessage(config, message, new_message=false) {
             e.description = parseFormattedText(e.description, key, value)
           }
         }
-        console.log(e.description)
         embedDescription.innerHTML = e.description
         em.append(embedDescription)
+      }
+
+      if ("thumbnail" in e) {
+        var thumbnail = document.createElement("a")
+        var thumbnailImage = document.createElement("img")
+        thumbnail.href = e.thumbnail.url
+        thumbnail.target="_blank"
+        thumbnail.className = "thumbnail"
+        thumbnailImage.src = e.thumbnail.url
+        thumbnail.append(thumbnailImage)
+        em.append(thumbnail)
       }
 
       try {
         em.style.borderColor = `#${e.color.toString(16)}`
       } catch (e) {}
-      messageContent.append(em)
+
+      if (messageContent.innerHTML != "") {
+        messageContent.append(document.createElement("br"), em)
+      } else {messageContent.append(em)}
     }
   }
 
@@ -165,7 +184,6 @@ async function getChannelHistory(config, id, cursor=null) {
   }
 
   var b = await a.json()
-  // currentAuthor = b[0].author.id
   currentAuthor = null
     
   for (message of b) {
