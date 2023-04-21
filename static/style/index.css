@@ -43,38 +43,30 @@ body {
 
 .menu-avatar-container {
   display: inline-block;
-  width: 3vh;
-  height: 3vh;
+  width: 4vh;
+  height: 4vh;
   transition: all 0.2s ease-in;
 }
 
-.menu-avatar-container:hover {
-  filter: brightness(0.8);
-}
+.menu-avatar-container:hover {filter: brightness(0.8);}
 
 .menu-text-container {
   height: auto;
   color: var(--text-color);
   display: inline-block;
-  margin-left: 0.8em;
-  width: 50%;
+  margin-left: 0.5em;
+  width: 40%;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   user-select: text;
 }
 
-.menu-text-container::-webkit-scrollbar{
-  display: none;
-}
+.menu-text-container::-webkit-scrollbar{display: none;}
 
-.menu-text-username {
-  font-size: 1em
-}
+.menu-text-username {font-size: 0.8em}
 
-.menu-text-status {
-  font-size: 0.8em;
-}
+.menu-text-status {font-size: 0.5em;}
 
 .guild {
   width: 2.2em;
@@ -84,9 +76,7 @@ body {
   margin-right: 0.8%;
 }
 
-.guild:hover {
-  filter: brightness(0.7);
-}
+.guild:hover {filter: brightness(0.7);}
 
 .channel {
   text-decoration: none;
@@ -100,9 +90,7 @@ body {
   transition: background 0.2s ease-in;
 }
 
-.channel:hover {
-  background: var(--channel-hover);
-}
+.channel:hover {background: var(--channel-hover);}
 
 .channel-icon {
   display: inline-block;
@@ -122,17 +110,11 @@ body {
   white-space: nowrap;
 }
 
-.channel-text-container::-webkit-scrollbar{
-  display: none;
-}
+.channel-text-container::-webkit-scrollbar{display: none;}
 
-.channel-text-username {
-  font-size: 0.9em;
-}
+.channel-text-username {font-size: 0.9em;}
 
-.channel-text-sub {
-  font-size: 0.6em;
-}
+.channel-text-sub {font-size: 0.6em;}
 
 .home-button {
   width: 4vh;
