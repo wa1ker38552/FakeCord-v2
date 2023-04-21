@@ -1,5 +1,5 @@
 .modal-background {
-  position: absolute; 
+  position: absolute;
   left: 0;
   top: 0;
   width: 100vw;
@@ -78,4 +78,17 @@
   background: var(--input-color);
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.badge-container {
+  box-sizing: border-box;
+  padding-left: 9em;
+  width: auto;
+}
+
+.badge {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
 }
