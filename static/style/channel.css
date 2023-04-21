@@ -55,6 +55,7 @@
   display: inline-block;
   width: 2.5em;
   height: 2.5em;
+  cursor: pointer;
 }
 
 .message-text {
@@ -149,18 +150,14 @@
   overflow: hidden;
 }
 
-.error {
-  color: var(--error);
-}
+.error {color: var(--error);}
 
 .traceback {
   text-decoration: none;
   color: var(--link);
 }
 
-.traceback:hover {
-  text-decoration: underline;
-}
+.traceback:hover {text-decoration: underline;}
 
 .embed {
   display: inline-block;
