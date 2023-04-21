@@ -1,0 +1,81 @@
+.modal-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+
+.modal {
+  position: relative;
+  width: 35em;
+  height: 30em;
+  background: var(--menu-background);
+  border-radius: 8px;
+  border-width: 0;
+  box-shadow: var(--menu-background) 0 0 1vh;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+}
+
+.modal-avatar-container {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  background: var(--menu-background);
+  position: absolute;
+  left: 2em;
+  top: 3em;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
+.modal-banner {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.modal-content-container {
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  grid-row: 2;
+  border-radius: 8px;
+  background: var(--modal-background);
+  padding: 1em;
+  box-sizing: border-box;
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+.modal-title {
+  user-select: text;
+  font-size: 2em;
+  margin-bottom: -0.1em;
+}
+
+.modal-field {
+  font-weight: bold;
+}
+
+.modal-entry {
+  color: var(--text-color);
+  margin-bottom: 0.8em;
+  user-select: text;
+}
+
+.modal-line {
+  width: 100%;
+  height: 1px;
+  background: var(--input-color);
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
