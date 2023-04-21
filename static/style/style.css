@@ -10,7 +10,7 @@ body {
 }
 
 code {
-  display: inline-block;
+  display: block;
   width: auto;
   font-size: 1em;
   background: var(--guild-background);
@@ -34,13 +34,9 @@ img {
   height: 5px;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+::-webkit-scrollbar-track {background: transparent;}
 
-::-webkit-scrollbar-thumb {
-  background: #212121;
-}
+::-webkit-scrollbar-thumb {background: #212121;}
 
 .centered-children {
   display: flex;
