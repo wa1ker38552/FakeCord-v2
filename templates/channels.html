@@ -23,16 +23,6 @@
         getConfig()
           .then(data => {
             getAuthenticatedUser(data.config)
-            getGuildData(data.config)
-            getChannelData(data.config)
-              .then(channels => {
-                getChannelMeta(data.config, "{{channel_id}}", channels)
-                document.getElementById("{{channel_id}}").scrollIntoView({
-                  behavior: 'auto',
-                  block: 'center',
-                  inline: 'center'
-                })
-              })
             getChannelHistory(data.config, "{{channel_id}}")
               .then(x => {
                 var container = document.getElementById("channelContent")
@@ -47,6 +37,16 @@
                         }
                       })
                   }
+                })
+              })
+            getGuildData(data.config)
+            getChannelData(data.config)
+              .then(channels => {
+                getChannelMeta(data.config, "{{channel_id}}", channels)
+                document.getElementById("{{channel_id}}").scrollIntoView({
+                  behavior: 'auto',
+                  block: 'center',
+                  inline: 'center'
                 })
               })
 
@@ -81,6 +81,7 @@
         <div class="modal-avatar-container"><img style="border-radius: 50%" id="modalAvatar" src="/static/assets/loading.png"></div>
         <div class="modal-banner" id="modalBanner"></div>
         <div class="modal-content-container">
+          <div class="badge-container" id="badgeContainer"></div>
           <div class="modal-content">
             <div class="modal-title" id="modalUsername">Loading...</div>
             <div class="modal-line"></div>
