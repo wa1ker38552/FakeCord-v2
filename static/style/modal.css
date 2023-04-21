@@ -62,9 +62,7 @@
   margin-bottom: -0.1em;
 }
 
-.modal-field {
-  font-weight: bold;
-}
+.modal-field {font-weight: bold;}
 
 .modal-entry {
   color: var(--text-color);
