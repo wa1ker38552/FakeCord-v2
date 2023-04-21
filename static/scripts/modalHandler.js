@@ -12,6 +12,24 @@ async function openModal(config, id) {
     }
   }
 
+  var badgeContainer = document.getElementById("badgeContainer")
+  badgeContainer.innerHTML = ""
+  for (badge of b.badges) {
+    var badgeObject = document.createElement("a")
+    var badgeIcon = document.createElement("img")
+    badgeObject.className = "badge"
+    badgeObject.target = "_blank"
+    badgeObject.href = badge.link
+
+    if (config.proxy) {
+      badgeIcon.src = `/api/badge-icons/${badge.icon}`
+    } else {
+      badgeIcon.src = `https://cdn.discordapp.com/badge-icons/${badge.icon}.png?size=${config.resolution}`
+    }
+    badgeObject.append(badgeIcon)
+    badgeContainer.append(badgeObject)
+  }
+
   if (b.user.banner_color) {
     document.getElementById("modalBanner").style.background = b.user.banner_color
   } else {
