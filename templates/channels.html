@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="/static/style/global.css">
     <link rel="stylesheet" href="/static/style/style.css">
     <link rel="stylesheet" href="/static/style/index.css">
+    <link rel="stylesheet" href="/static/style/modal.css">
     <link rel="stylesheet" href="/static/style/channel.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito Sans">
 
     <script src="/static/scripts/script.js"></script>
     <script src="/static/scripts/metadata.js"></script>
+    <script src="/static/scripts/modalHandler.js"></script>
     <script src="/static/scripts/streamUpdater.js"></script>
     <script src="/static/scripts/channelHistory.js"></script>
   </head>
@@ -66,10 +68,32 @@
               }
             })
 
+            window.onclick = function(e) {
+              var modal = document.getElementById("modal")
+              if (e.target == modal) {modal.style.display = "none"}
+            }
             setInterval(function() {updateStream(data.config)}, 1000)
           })
       }
     </script>
+    <div class="modal-background centered-children" id="modal" style="display: none">
+      <div class="modal">
+        <div class="modal-avatar-container"><img style="border-radius: 50%" id="modalAvatar" src="/static/assets/loading.png"></div>
+        <div class="modal-banner" id="modalBanner"></div>
+        <div class="modal-content-container">
+          <div class="modal-content">
+            <div class="modal-title" id="modalUsername">Loading...</div>
+            <div class="modal-line"></div>
+            <div class="modal-field">ABOUT ME</div>
+            <div class="modal-entry" id="aboutMe">Loading...</div>
+            <div class="modal-field">USERID</div>
+            <div class="modal-entry" id="modalID">Loading...</div>
+            <div class="modal-field">PUBLIC FLAGS</div>
+            <div class="modal-entry" id="modalFlags">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="channel-container" id="channelContainer"></div>
     <div class="content-container">
       <div class="channel-banner">
