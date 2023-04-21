@@ -86,3 +86,7 @@ def messages(id):
 def message_channel(id):
   content = json.loads(request.data.decode('utf-8'))['content']
   return client.post(f'https://discord.com/api/v9/channels/{id}/messages', {'content': content}).json()
+
+@app.route('/api/users/<id>')
+def users(id):
+  return client.get(f'https://discord.com/api/v9/users/{id}/profile?with_mutual_guilds=false&with_mutual_friends_count=false').json()
