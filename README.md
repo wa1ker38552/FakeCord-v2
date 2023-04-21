@@ -4,10 +4,10 @@
 FakeCord is a custom web client for Discord which uses Flask as a framework and Python as the backend. Javascript is used to render content.
 
 **Notes 📝**
+- ⚠️ This project would be considered a 'selfbot', use at your own risk
 - This project is still in development so not all features from [FakeCord](https://github.com/wa1ker38552/fakecord) are ported / things might not work
 - You **have** to clone your own instance for it to work because of rate limits
 - Most small features will not be ported through because they take too much time and aren't needed as part of Discord's core functionality
-- ⚠️ This project would be considered a 'selfbot', use at your own risk
 
 **Setup ⚙️** (Replit deployment recommended)
 
@@ -28,6 +28,9 @@ Local Deployment<br>
 - More versatile backend to handle exceptions and events
 - Content rendered by JS instead of Jinja
 - Fully working API
+
+**Known Issues 🐛**
+- Most avatar banners show up as black (due to CORS policy)
 
 ![image](https://user-images.githubusercontent.com/100868154/232855897-4cd42745-f46e-4b8e-8b09-55074cc2bd46.png)
 
