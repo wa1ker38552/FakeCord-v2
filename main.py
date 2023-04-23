@@ -1,6 +1,9 @@
 from flask import render_template
+from database import Database
 from threading import Thread
+from flask import redirect
 from api import app
+import requests
 import discord
 import copy
 import os
@@ -8,6 +11,9 @@ import os
 current_stream = []
 current_channel = None
 client = discord.Client(self_bot=True)
+cli = requests.Session()
+cli.headers = {'Authorization': os.environ['TOKEN']}
+db = Database()
 
 def format_embed(e):
   embed = {}
@@ -61,6 +67,20 @@ def app_channels(id):
     current_stream = []
   except ValueError: pass
   return render_template('channels.html', channel_id=id)
+
+@app.route('/guilds/<id>')
+def app_guilds(id):
+  data = db.load()['guilds']
+  for i, guild in enumerate(data):
+    if guild['id'] == id:
+      if 'channels' in guild:
+        return redirect(f'/channels/{id}/{guild["channels"][0]["id"]}')
+      else:
+        channels = cli.get(f'https://discord.com/api/v9/guilds/{id}/channels').json()
+        data[i]['channels'] = channels
+        db.set('guilds', data)
+        return redirect(f'/channels/{id}/{channels[0]["id"]}')
+  return redirect('/')
 
 @client.event
 async def on_ready():
