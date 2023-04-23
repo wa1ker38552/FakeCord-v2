@@ -19,9 +19,10 @@ async function getGuildData(config) {
 
   for (guild of b) {
     if (!(guild.features.includes("HUB"))) {
-      var guildParent = document.createElement("div")
+      var guildParent = document.createElement("a")
       var guildIcon = document.createElement("img")
-  
+      
+      guildParent.href = "/guilds/"+guild.id
       guildParent.className = "guild"
       guildIcon.style.borderRadius = "10%"
   
