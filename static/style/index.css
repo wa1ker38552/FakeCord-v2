@@ -43,8 +43,8 @@ body {
 
 .menu-avatar-container {
   display: inline-block;
-  width: 3vh;
-  height: 3vh;
+  width: 2em;
+  height: 2em;
   transition: all 0.2s ease-in;
   margin: 0.5em;
 }
@@ -64,13 +64,13 @@ body {
 
 .menu-text-container::-webkit-scrollbar{display: none;}
 
-.menu-text-username {font-size: 1.5vh}
+.menu-text-username {font-size: 1em}
 
-.menu-text-status {font-size: 1vh;}
+.menu-text-status {font-size: 0.7em;}
 
 .guild {
-  width: 3vh;
-  height: 3vh;
+  width: 2em;
+  height: 2em;
   transition: filter 0.3s ease-in;
   cursor: pointer;
   margin-right: 0.8%;
@@ -117,9 +117,9 @@ body {
 .channel-text-sub {font-size: 0.6em;}
 
 .home-button {
-  width: 4vh;
-  height: 4vh;
+  width: 2em;
+  height: 2em;
   margin: 0.5em;
-  margin-right: 0.5em;
+  margin-right: 0;
   box-sizing: border-box;
 }
