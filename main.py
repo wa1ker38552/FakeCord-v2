@@ -82,6 +82,10 @@ def app_guilds(id):
         return redirect(f'/channels/{id}/{channels[0]["id"]}')
   return redirect('/')
 
+@app.route('/channels/<guild>/<id>')
+def app_guild_channels(guild, id):
+  return render_template('guild_channels.html', guild_id=guild, channel_id=id)
+
 @client.event
 async def on_ready():
   print(client.user)
