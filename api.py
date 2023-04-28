@@ -36,6 +36,11 @@ def api_attachments(channel, id, name):
   r = requests.get(f'https://cdn.discordapp.com/attachments/{channel}/{id}/{name}?size={db.load()["config"]["resolution"]}').content
   return send_file(io.BytesIO(r), mimetype='image/png')
 
+@app.route('/api/badge-icons/<icon>')
+def api_badget_icons(icon):
+  r = requests.get(f'https://cdn.discordapp.com/badge-icons/{icon}.png?size={db.load()["config"]["resolution"]}').content
+  return send_file(io.BytesIO(r), mimetype='image/png')
+
 # ===== API ===== #
 @app.route('/api/config')
 def config():
@@ -71,7 +76,18 @@ def channels():
 
     db.set('channels', channels)
   return db.load()['channels']
-  
+
+@app.route('/api/channels/<guild>')
+def guild_channels(guild):
+  database = db.load()
+  for i, g in enumerate(database['guilds']):
+    if g['id'] == guild:
+      if not 'channels' in g:
+        channels = client.get(f'https://discord.com/api/v9/guilds/{guild}/channels').json()
+        database['guilds'][i]['channels'] = channels
+        db.save(database)
+      return database['guilds'][i]['channels']
+        
 @app.route('/api/@me')
 def self():
   return client.get('https://discord.com/api/v9/users/@me').json()
