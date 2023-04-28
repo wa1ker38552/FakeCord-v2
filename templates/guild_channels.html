@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FakeCord</title>
+
+    <link rel="icon" href="/static/assets/fakecord.png">
+    <link rel="stylesheet" href="/static/style/global.css">
+    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="/static/style/index.css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/nunito-sans">
+
+    <script src="/static/scripts/script.js"></script>
+    <script src="/static/scripts/metadata.js"></script>
+  </head>
+  <body>
+    <script>
+      var guild_id = "{{guild_id}}"
+      var channel_id = "{{channel_ud}}"
+      window.onload = function() {
+        getConfig()
+          .then(data => {
+            getAuthenticatedUser(data.config)
+            getGuildData(data.config)
+            getGuildChannelData(data.config, guild_id, channel_id)
+          })
+      }
+    </script>
+    <div class="channel-container" id="channelContainer"></div>
+    <div class="content-container">
+    </div>
+    <div class="menu-container centered-children-vert">
+      <a class="menu-avatar-container home-button" href="/"><img style="border-radius: 10%" src="/static/assets/fakecord.png"></a>
+      <div class="menu-avatar-container"><img id="menuAvatar" style="border-radius: 50%" src="/static/assets/loading.png"></div>
+      <div class="menu-text-container centered-children">
+        <div class="menu-text-username">Loading...</div>
+        <div class="menu-text-status">Loading...</div>
+      </div>
+    </div>
+    <div class="guild-container centered-children-vert" id="guildContainer"></div>
+  </body>
+</html>
